@@ -1,0 +1,6 @@
+﻿  main.cpp
+c:\users\am\documents\github\ada\merge\merge\main.cpp(77): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+c:\users\am\documents\github\ada\merge\merge\main.cpp(113): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
+c:\users\am\documents\github\ada\merge\merge\main.cpp(78): warning C4101: 'timer2': variable local sin referencia
+c:\users\am\documents\github\ada\merge\merge\main.cpp(78): warning C4101: 'timer': variable local sin referencia
+  Merge.vcxproj -> C:\Users\AM\Documents\GitHub\ADA\Merge\Debug\Merge.exe

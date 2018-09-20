@@ -1,0 +1,3 @@
+﻿  main.cpp
+c:\users\am\documents\github\ada\recurs[srmd]\recurs[srmd]\main.cpp(67): warning C4326: el tipo de valor devuelto de 'main' debe ser 'int' en lugar de 'void'
+  Recurs[srmd].vcxproj -> C:\Users\AM\Documents\GitHub\ADA\Recurs[srmd]\Debug\Recurs[srmd].exe
