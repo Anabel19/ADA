@@ -1,6 +1,10 @@
 ﻿  main.cpp
-c:\users\am\documents\github\ada\merge\merge\main.cpp(77): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-c:\users\am\documents\github\ada\merge\merge\main.cpp(113): warning C4154: eliminación de una expresión de matriz; suministrada una conversión a puntero
-c:\users\am\documents\github\ada\merge\merge\main.cpp(78): warning C4101: 'timer2': variable local sin referencia
-c:\users\am\documents\github\ada\merge\merge\main.cpp(78): warning C4101: 'timer': variable local sin referencia
+c:\users\am\documents\github\ada\merge\merge\main.cpp(135): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+c:\users\am\documents\github\ada\merge\merge\main.cpp(136): warning C4101: 'timer2': variable local sin referencia
+c:\users\am\documents\github\ada\merge\merge\main.cpp(136): warning C4101: 'timer': variable local sin referencia
+c:\users\am\documents\github\ada\merge\merge\main.cpp(42): warning C4018: '<': no coinciden signed/unsigned
+  c:\users\am\documents\github\ada\merge\merge\main.cpp(28): note: durante la compilación de la función miembro de plantilla clase de 'void ordenamiento<comparacion>::MergeSort(int *,int,int)'
+  c:\users\am\documents\github\ada\merge\merge\main.cpp(153): note: vea la referencia a la creación de instancias de plantilla de función 'void ordenamiento<comparacion>::MergeSort(int *,int,int)' que se está compilando
+  c:\users\am\documents\github\ada\merge\merge\main.cpp(151): note: vea la referencia a la creación de instancias de plantilla clase de 'ordenamiento<comparacion>' que se está compilando
+c:\users\am\documents\github\ada\merge\merge\main.cpp(44): warning C4018: '<': no coinciden signed/unsigned
   Merge.vcxproj -> C:\Users\AM\Documents\GitHub\ADA\Merge\Debug\Merge.exe

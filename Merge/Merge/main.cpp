@@ -19,39 +19,93 @@ class ordenamiento
 	public:
 	void InsertSort(int *arr, int *n);
 	void MergeSort(int *arr, int ini, int fin);
+	void MergeSortN_2(int *arr, int ini, int fin);
+	//void MergeSortI(int *arr, int ini, int fin);
 };
 
 
 template<class compara>
-void ordenamiento<compara>::MergeSort(int *A, int start, int end) {
-	
-	if (start < end) {
-		int t = end - start + 1;
-		int medium = (start + end) >> 1;
-		MergeSort(A, start, medium);
-		MergeSort(A, medium+1, end);
-		/*
-		int *b = new int[t];
-		for(unsigned int i=0; i<t; i++)
-			*/
-		int *b = new int[t];
-		for (int i = 0; i<t; i++)
-			*(b + i) = *(A + end + i);
-		int j = 0;
-		int k = medium - start + 1;
+void ordenamiento<compara>::MergeSort(int *a, int left, int right) {
+	if (left == right)
+		return;
 
-		for (int i = 0; i < t; i++) {
-			if (k <= end - start)
-				if (j <= medium - start)
-					if (c_sort(*(b + k), *(b + j)))	*(A + i + start) = *(b + k++);
-					else	*(A + i + start) = *(b + j++);
-				else
-					*(A + i + start) = *(b + k++);
-			else
-				*(A + i + start) = *(b + j++);
+	int middle = (left + right) >> 1;
+
+	MergeSort(a, left, middle);
+	MergeSort(a, middle + 1, right);
+
+	int	l = middle - left + 1;
+	int r = right - left;
+	cout << l << r << "----" << endl;
+	int *b = new int[l];
+	int *c = new int[r];
+	for (unsigned int i = 0; i < l; i++)
+		*(b + i) = *(a + i);
+	for (unsigned int j = 0; j < r; j++)
+		*(c + j) = *(a + middle + 1 + j);
+
+	int i = 0; int j = 0;
+	int k = 0; 
+
+	while (i < l and j <= r) {//pieces
+		if (*(b + i) < *(c + j)) {
+			*(a + k) = *(b + i);    i++;
 		}
-		delete b;
+		else {
+			*(a + k) = *(c + j);	j++;
+		}
+		k++;
 	}
+	while (i < l) {
+		*(a + k) = *(b + i);	i++;	k++;
+	}
+	while (j < r) {
+		*(a + k) = *(c + j);	j++;	k++;
+	}
+	/*
+	for (unsigned int k = 0; k < t; k++) {
+		cout << *(a + k);
+	}*/
+	delete b;
+	delete c;
+}
+
+
+template<class compara>
+void ordenamiento<compara>::MergeSortN_2(int *a, int left, int right) {
+	if (left == right)
+		return;
+
+	int t = right - left + 1;//tam
+	int middle = (left + right) >> 1;
+
+	MergeSort(a, left, middle);
+	MergeSort(a, middle + 1, right);
+
+	int *b = new int[t];
+	int i = left; int j = middle+1;
+	int k = 0; //int aux = right - middle;
+	
+	while (i < middle+1 and j<=right) {
+		if (*(a + i)> *(a + j)){
+			*(b + k) = *(a + i);    i++;
+		}
+		else {
+			*(b + k) = *(a + j);	j++;
+		}
+		k++;
+	}
+	
+	while (i < middle+1) {
+		*(b + k) = *(a + i);	i++;	k++;
+	}
+	while (j < right) {
+		*(b + k) = *(a + j);	j++;	k++;
+	}
+	for (unsigned int k = 0; k < t; k++) {
+		cout<<*(b+k);
+	}
+	delete b;
 }
 
 template<class compara>
@@ -97,8 +151,8 @@ int main() {
 	ordenamiento<comparacion> S;
 	
 	S.MergeSort(arr,0,t);
-	//cout<<"bubble: "<<endl;
-	//print(arr,t);
+	cout<<"merge: "<<endl;
+	print(arr,t);
 	
 
 	/*
@@ -114,8 +168,8 @@ int main() {
 	}
 	cout << endl << "TIEMPO: " << double(timer2 - timer) / CLOCKS_PER_SEC << endl;
 	*/
-	delete[]arr;
-	*arr = NULL;
+	//delete[]arr;
+	//*arr = NULL;
 
 	system("pause");
 	return 0;
