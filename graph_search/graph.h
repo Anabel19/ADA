@@ -3,18 +3,23 @@
 #include <iostream>
 #include <list>
 #include <vector>
-#include <queue>
+#include <deque>
  
  using namespace std;
 template <class T>
 class Cnode{
 	public:
-	T date;
-	string label;
+	typedef typename T::n_ N;
+	N date;
+	enum label{
+		w,b,g //white, black, gris
+	};
+	label color;
 	list<Cnode*> nneighbors;
 	
-	Cnode(T value){
+	Cnode(N value){
 		this->date= value;
+		color=w;
 	}
 	void InsEdge(Cnode *b){
 		nneighbors.push_back(b);
@@ -24,12 +29,16 @@ class Cnode{
 template<class N>
 class Cgraph{
 	public:
-	typedef CGraph<N>  self;
-	typedef CNode<self>  Node;
+	typedef Cgraph<N>  self;
+	typedef Cnode<self>  Node;
+	typedef N n_;
     vector<Node*> mnodes;
+	deque<Node*> q;
+	
 	bool find(Node*, unsigned int &id);
 	void InsNode(N);
-	void randomEdge();
+	void first_queue(){q.push_back(mnodes[0]);}
+	void dfs();
 	void printGraph();
 	virtual ~Cgraph(){
 		unsigned int t = mnodes.size(), i;
@@ -38,9 +47,9 @@ class Cgraph{
 };
 
 template<class N>
-bool Cgraph<N>::find(Cnode*, unsigned int &id){
+bool Cgraph<N>::find(Node* d, unsigned int &id){
 	for(id=0; id< mnodes.size(); id++){
-		if(mnodes[id]->value==d)  return 1;
+		if(mnodes[id]->date==d)  return 1;
 	}
 	return 0;
 }
@@ -52,18 +61,20 @@ void Cgraph<N>::InsNode(N date){
 }
 
 template<class N>	
-void Cgraph<N>::dfs(queue q){
-	if(!q.empty){
-		Node *v= q.pop_front();
-		v.color=b;
+void Cgraph<N>::dfs(){
+	if(!q.empty()){
+		Node *v= q.front();
+		cout<<"-- "<<v->date;
+		q.pop_front();
+		v->color= Node::b;
 		for (typename list<Node*>::iterator it= v->nneighbors.begin(); it != v->nneighbors.end(); ++it){
-			if((*it)->color==w){
-				(*it)->color==q;
+			if((*it)->color== Node::w){
+				(*it)->color== Node::g;
 				q.push_back(*it);
 			}
 		}
+		dfs();
 	}
-	dfs(q);
 }
 	
 template<class N>	
@@ -73,7 +84,7 @@ void Cgraph<N>::printGraph(){
 		//cout<<tmp_node->date;// etiqueta-valor de cada nodo
 
 		for (typename list<Node*>::iterator it= tmp_node->nneighbors.begin(); it != tmp_node->nneighbors.end(); ++it){
-			cout<<" ---> "<< (*tmp_node)->date<<"("<<(*it)->date<<")";
+			cout<<" ---> "<< (tmp_node)->date<<"("<<(*it)->date<<")";
 			cout<<endl;
 		}
 		cout<<"\n";
