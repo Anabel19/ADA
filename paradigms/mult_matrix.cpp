@@ -24,12 +24,12 @@ int MatrixChainMul(int i, int j, vector<int> d){
 	return m[i][j];
 }
 
-void BackTracking(int i, int j, vector<vector<int>>s, char &t){
+void BT(int i, int j, vector<vector<int>>s, char &t){//BackTracking
 	if(i==j) cout<<t++;
 	else{
 		cout<<"{";
-		BackTracking(i,s[i][j],s,t);
-		BackTracking(s[i][j]+1,j,s,t); cout<<"}";
+		BT(i,s[i][j],s,t);
+		BT(s[i][j]+1,j,s,t); cout<<"}";
 	}
 }
 /*dynamic programming*/
@@ -57,7 +57,7 @@ int MatrixChainMul_dp(int n, vector<int> d){
 			}
 		}
 	}
-	BackTracking(1,n-1,s,t);	cout<<endl;
+	BT(1,n-1,s,t);	cout<<endl;
 	return m[1][n-1];
 }
 main(){
